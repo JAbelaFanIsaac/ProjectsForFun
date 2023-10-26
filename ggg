@@ -1,0 +1,34 @@
+import os
+DataName = []
+Monster_collection = []
+
+class Monster:
+    def __init__(self,id,Name,Origin,Description,Attack,Magical_Force,Magical_Defence,Defence, Intelligence,Health):
+        self.id = id
+        self.Name = Name
+        self.Origin = Origin
+        self.Description = Description
+        self.Attack = Attack
+        self.Magical_Force = Magical_Force
+        self.Magical_Defence = Magical_Defence
+        self.Defence = Defence
+        self.Intelligence = Intelligence
+        self.Health = Health
+
+    def __repr__(self):
+        return self.Name
+
+def read_monsters():
+        try:
+            with open('Monsters.txt') as f:
+                for line in f:
+                    parts = line.split(",")
+                    DataName.append(parts[1])
+                    Mon_val = Monster(parts[0], parts[1], parts[2], parts[3], parts[4],
+                                                      parts[5], parts[6], parts[7], parts[8], parts[9])
+                    print(repr(Mon_val))
+        except OSError:
+            print("Sorry, could not find the file. Make sure it is in the correct directory. The current directory is",os.getcwd())
+
+read_monsters()
+print(DataName)
